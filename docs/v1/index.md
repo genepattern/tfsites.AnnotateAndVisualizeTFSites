@@ -13,65 +13,119 @@
 
 ## Introduction
 
-tfsites.AnnotateTfSites annotates all predicted tf sites in a DNA sequence and reports their affinity.
+`annotateAndVisualizeTfSites` annotates transcription factor binding sites across a DNA sequence. Multiple transcription factors can be analyzed. Each binding site is labeled with the TF name and a unique binding site ID. If a relative affinity dataset from defineTfSites is provided for a transcription factor, the affinity of this site will be labeled and the intensity of the binding site’s color will be proportional to the affinity.
 
-
-## Functionality
-
-TBD
 
 ## Methodology
 
-TBD
+We iterate across every k-mer in the DNA sequence and identify those that conform to the IUPAC definition for transcription factor binding sites. For each binding site, we report its sequence, position, TF name, affinity (if PBM data is given), direction (“+” if it follows the given IUPAC and “-” if it follows the reverse complement of the IUPAC), and a unique ID. 
+
+Using the binding sites identified in the DNA sequence, an image of the DNA sequence and all annotated binding sites is generated. Each binding site is plotted as a polygon that points in the direction of the site (right for positive, left for negative, and straight for a palindrome sequence).  
+
+If the sequence is greater than 500 nucleotides in length, the annotation images are saved to multiple files. Each file contains a maximum of 500 nucleotides. 
+
 
 ## Parameters
 
 <span style="color: red;">*</span> indicates required parameter
 
-- **input data**<span style="color: red;">*</span>
-    - This is a [ state what the format and content is supposed to be] file containing DNA sequences to be analyzed.
-- **IUPAC**<span style="color: red;">*</span>
-    - IUPAC DNA definition of the transcription factor site 
-- **out filename**<span style="color: red;">*</span>
-    - Out file name for the annotated PBM data
-- **normpbm**
-    - Normalized PBM created with the tfsites.defineTfSites module.
+### Inputs and Outputs
+
+- <span style="color: red;">*</span>**DNA Sequences To Annotate (.tsv)**
+    - This file contains one or more DNA sequences to be annotated. 
+- **Relative Affinity PBM Data (.tsv)**
+    - `Default = None`
+    - This file is the normalized PBM data file for a transcription factor obtained from `defineTfSites.` It contains the relative affinity for every possible k-mer.
+- <span style="color: red;">*</span>**TF Sites Output Table (.tsv)**
+    - Name of the output file containing the list of binding sites.
+- <span style="color: red;">*</span>**Annotated Sequence Image(s)  (.png)**
+    - Base name of the output file for the plots. If the length of the sequence is greater than 500, the visualization will be broken up into multiple output files with the following name format: `[base name]_zoom=[start pos],[end pos].png`
+
+### Other Parameters
+- <span style="color: red;">*</span>**TF Name (string)**
+    - Name of transcription factor that is being analyzed.
+- <span style="color: red;">*</span>**TF IUPAC Definition (string)**
+    - IUPAC definition of the core binding site for a transcription factor (see here). 
+- <span style="color: red;">*</span>**TF Binding Site Color (string)**
+    - Color of the binding sites on the plot, for the transcription factor being analyzed.
+- **Plot Resolution (integer)**
+    - `Default = 200`
+    - Resolution of the plot, in dots (pixels) per inch
+- **Zoom Window (dash-separated string)**
+    - `Default = None`
+    - Given a start position and an end position, zoom into a portion of the sequence. The numbers in the range are inclusive. For example, the first 200 nucleotides of the sequence would be specified as: `1-200.`
+    - If zoom window is specified, then image output window is ignored
+- **Image Output Window (integer)**
+    - `Default = 500`
+    - Interval size (in nucleotides) used to partition the output plot. By default, the sequence will be divided into 500-nucleotide segments.
+    - If image output window is specified, then zoom window is ignored
 
 
-## Input Files
+## Input File(s)
 
-1.  input data.  Tab delimited file [ define format and contents in detail ] 
+1.  DNA Sequences To Annotate (.tsv)
+- Columns:
+    - `Seq_name:` name of the DNA sequence
+    - `Seq:` the sequence
+ 
+```
+seq_name	    seq
+ZRS                 AACTTTAATGCCTATGTTTGATTTGAAGTCATAGCATAAAAGGTAACATAAGCAACATCCTGACCAATTATCCAAACCATCCAGACATCCCTGAATGGC...
+Hand2_mm1689        CACCACTGGGTGATCCATAGTATGGAATATTTTTATGAGAAACAGCCACATAACATGTACCTGTTAATGTAGGCTTTGTGTTTATTTGCAATAGCAGAG...
+```
     
-2. normpbm file. Normalized PBM created with the tfsites.defineTfSites module. [ define format and contents in detail  ]
+2. Relative Affinity PBM data (.tsv)
+- Columns
+  - `Seq:` the sequence of every possible k-mer
+  - `Rel_aff:` the relative affinity of the k-mer normalized to the max IUPAC k-mer
 
+```
+seq          rel_aff
+AAAAAAAA     0.147
+AAAAAAAC     0.107
+AAAAAAAG     0.13
+AAAAAAAT     0.125
+AAAAAACA     0.123
+```
 
-## Creating Input Files from User Data
-
-TBD Describe how to get common data formats into the format needed here
        
-## Output Files
+## Output File(s)
 
-  1.PBM: <output prefix>.pbm.tsv.  Tab-separated text file TBD.
-    e.g. 
-```
-seq     rel_aff
-AAAAAAAA        0.147
-AAAAAAAC        0.107
-AAAAAAAG        0.13
-AAAAAAAT        0.125
-AAAAAACA        0.123
+1.  TF Sites Output Table (.tsv)
+- Columns
+    - `Seq_name:` Name of the sequence
+    - `Kmer_id:` unique ID associated with each k-mer
+    - `Kmer:` sequence of the k-mer
+    - `Pos-1idx:` starting position of the k-mer
+    - `Aff:` relative affinity of the k-mer
+    - `Site_direction:` direction of the binding site (+ if it follows the given IUPAC or - if it follows the reverse complement of the IUPAC)
+    - `Duplicate_kmer_seq_ids:` name of kmer IDs that have the same k-mer sequence
 
 ```
+seq_name        kmer_id	         kmer        pos-1idx   aff      site_direction  duplicate_kmer_seq_ids
+Hand2_mm1689    Hand2_mm1689:2	 ATGGAATA    22         0.103    +               Hand2_mm1689:2,22
+Hand2_mm1689    Hand2_mm1689:3	 GAGGAACT    114        0.131    +	
+Hand2_mm1689    Hand2_mm1689:4	 ATGGATTC    155        0.103    +	
+Hand2_mm1689    Hand2_mm1689:5	 TGATCCTA    344        0.095    -	
+Hand2_mm1689    Hand2_mm1689:6	 AATTCCAT    494        0.111    -               Hand2_mm1689:17,6
+
+```
+
+2.  Annotated Sequence Image(s)  (.png)
+
+- ZRS sequence: 
+   <img src="./04-output_vis-sites-zrs-start_pos=0.png"/>
+
+- Hand2_mm1689 sequence:
+   <img src="./04-output_vis-sites-hand2-start_pos=0.png"/>
     
   
 ## Example Data
 
 [Example input data is available on github](https://github.com/genepattern/tfsites.annotateTfSites/data)
-    
-## References
 
-Cancer Genome Atlas Network. Comprehensive genomic characterization of head and neck squamous cell carcinomas. Nature. 2015 Jan 29;517(7536):576-82. doi: 10.1038/nature14129. PMID: 25631445; PMCID: PMC4311405.
     
 ## Version Comments
 
 - **1.0.0** (2023-01-12): Initial draft of document scaffold.
+- **1.0.1** (2024-02-02): Draft completed.
