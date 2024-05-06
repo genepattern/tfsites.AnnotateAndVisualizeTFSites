@@ -1,72 +1,177 @@
-#tfsites.annotateTfSites
+#tfsites.annotateAndVisualizeTfSites
 #Mon Aug 21 21:11:17 UTC 2023
 JVMLevel=
 LSID=urn\:lsid\:8080.gpserver.ip-172-31-26-71.ip-172-31-26-71.ec2.internal\:genepatternmodules\:709\:1
 author=
-commandLine=python /build/tfsites-webportal/1-annotateTfSites.py  -f <input.data> -i <IUPAC>  -o <out.filename>  -p <normpbm>        
+commandLine=python /build/tfsites-webportal/03-annotateAndVisualizeTfSites/03-annotateAndVisualizeTfSites.py  -d <DNA.sequences.to.annotate> -s <binding.site.definition>  -t <TF.sites.in.DNA.sequence.table.output.filename> -i <TF.sites.in.DNA.sequence.annotated.image.output.filename> <PBM.reference.data> <PFM.reference.data>   <plot.dimensions>  -r <plot.resolution>  -c <binding.site.color> <region.of.DNA.to.visualize> -p <number.of.bases.included.per.plot>    
 cpuType=any
-description=Annotates all predicted transcription factor sites in a DNA sequence and report their affinity.\n\nhttps\://github.com/jsolvason/tfsites-webportal/blob/master/1-annotateTfSites-example.sh\n\n
+description=
 documentationUrl=https://genepattern.github.io/tfsites.annotateTfsites/v1/
 fileFormat=
 job.cpuCount=
-job.docker.image=genepattern/tfsites\:0.1
+job.docker.image=genepattern/tfsites\:0.9
 job.memory=
 job.walltime=
 language=any
-name=tfsites.AnnotateTfSites
+name=tfsites.annotateAndVisualizeTfSites
 os=any
 p1_MODE=IN
 p1_TYPE=FILE
 p1_default_value=
-p1_description=DNA sequences to be analyzed
+p1_description=TSV file containing one or more DNA sequences to be annotated.
 p1_fileFormat=.tsv
 p1_flag=
-p1_name=input.data
+p1_name=DNA.sequences.to.annotate
 p1_numValues=1..1
 p1_optional=
 p1_prefix=
 p1_prefix_when_specified=
 p1_type=java.io.File
 p1_value=
+
 p2_MODE=
 p2_TYPE=TEXT
 p2_default_value=NNGGAWNN
-p2_description=IUPAC DNA definition of the transcription factor site
+p2_description=IUPAC definition of the core binding site for a transcription factor (see <a href="https://www.bioinformatics.org/sms/iupac.html">here</a>). 
 p2_fileFormat=
 p2_flag=
-p2_name=IUPAC
+p2_name=binding.site.definition
 p2_numValues=0..1
 p2_optional=
 p2_prefix=
 p2_prefix_when_specified=
 p2_type=java.lang.String
 p2_value=
+
 p3_MODE=
 p3_TYPE=TEXT
-p3_default_value=<input.data_basename>_annotated.tsv
+p3_default_value=<DNA.sequences.to.annotate_basename>_annotated.tsv
 p3_description=Out file name for the annotated PBM data
 p3_fileFormat=
 p3_flag=
-p3_name=out.filename
+p3_name=TF.sites.in.DNA.sequence.table.output.filename
 p3_numValues=0..1
 p3_optional=
 p3_prefix=
 p3_prefix_when_specified=
 p3_type=java.lang.String
 p3_value=
-p4_MODE=IN
-p4_TYPE=FILE
-p4_default_value=
-p4_description=Normalized PBM created with the tfsites.0.defineTfSites module.
-p4_fileFormat=.tsv
-p4_flag=\ \ 
-p4_name=normpbm
+
+p4_MODE=
+p4_TYPE=TEXT
+p4_default_value=<DNA.sequences.to.annotate_basename>_annotated.png
+p4_description=Base name of the output file for the plots. If the length of the sequence is greater than 500, the visualization will be broken up into multiple output files with the start and stop positions added to the base filename.
+p4_fileFormat=
+p4_flag=
+p4_name=TF.sites.in.DNA.sequence.annotated.image.output.filename
 p4_numValues=0..1
 p4_optional=
 p4_prefix=
 p4_prefix_when_specified=
-p4_type=java.io.File
+p4_type=java.lang.String
 p4_value=
+
+
+p5_MODE=IN
+p5_TYPE=FILE
+p5_default_value=
+p5_description=The normalized PBM data file for a transcription factor obtained from defineTfSites. It contains the relative affinity for every possible k-mer.
+p5_fileFormat=.tsv
+p5_flag= 
+p5_name=PBM.reference.data
+p5_numValues=0..1
+p5_optional=on
+p5_prefix=
+p5_prefix_when_specified=-b  
+p5_type=java.io.File
+p5_value=
+
+p6_MODE=IN
+p6_TYPE=FILE
+p6_default_value=
+p6_description=The normalized PFM data file for a transcription factor obtained from defineTfSites. It contains the relative affinity for every possible k-mer.
+p6_fileFormat=.tsv
+p6_flag=
+p6_name=PFM.reference.data
+p6_numValues=0..1
+p6_optional=on
+p6_prefix=
+p6_prefix_when_specified=-w  
+p6_type=java.io.File
+p6_value=
+
+
+p7_MODE=
+p7_TYPE=Integer
+p7_default_value=500
+p7_description=Interval size (in nucleotides) used to partition the output plot. By default, the sequence will be divided into 500-nucleotide segments. If Number of Bases Included Per Plot is specified, then Region of DNA to Visualize is ignored
+p7_fileFormat=
+p7_flag=
+p7_name=number.of.bases.included.per.plot
+p7_numValues=1..1
+p7_optional=
+p7_prefix=
+p7_prefix_when_specified=   
+p7_type=java.lang.Integer
+p7_value=
+
+p8_MODE=
+p8_TYPE=Integer
+p8_default_value=200
+p8_description=Resolution of the plot, in dots (pixels) per inch.
+p8_fileFormat=
+p8_flag=
+p8_name=plot.resolution
+p8_numValues=0..1
+p8_optional=
+p8_prefix=
+p8_prefix_when_specified=-n
+p8_type=java.lang.Integer
+p8_value=
+
+p9_MODE=
+p9_TYPE=TEXT
+p9_default_value=
+p9_description=Given a start position and an end position, zoom into a portion of the sequence. The numbers in the range are inclusive. For example, the first 200 nucleotides of the sequence would be specified as: 1-200. If Region of DNA to Visualize is specified, then  Number of Bases Included Per Plot is ignored
+p9_fileFormat=
+p9_flag=
+p9_name=region.of.DNA.to.visualize
+p9_numValues=0..1
+p9_optional=on
+p9_prefix=
+p9_prefix_when_specified=
+p9_type=java.lang.String
+p9_value=
+
+p10_MODE=
+p10_TYPE=TEXT
+p10_default_value=
+p10_description=Height and width of the image in inches. 
+p10_fileFormat=
+p10_flag=
+p10_name=plot.dimensions
+p10_numValues=0..1
+p10_optional=on
+p10_prefix=
+p10_prefix_when_specified=
+p10_type=java.lang.String
+p10_value=
+
+p11_MODE=
+p11_TYPE=TEXT
+p11_default_value=red
+p11_description=Color of the binding sites on the plot, for the transcription factor being analyzed.
+p11_fileFormat=
+p11_flag=
+p11_name=binding.site.color
+p11_numValues=0..1
+p11_optional=on
+p11_prefix=
+p11_prefix_when_specified=
+p11_type=java.lang.String
+p11_value=
+
+
 privacy=public
 quality=development
 src.repo=
