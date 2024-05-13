@@ -1,0 +1,25 @@
+[
+    {
+        "name": "Inputs and Outputs",
+        "description": "Required Parameters",
+        "hidden": false,
+        "parameters": [
+            "DNA.sequence(s).to.annotate",
+            "TF.information",
+            "all.TF.reference.data",
+            "TF.sites.in.DNA.sequence.table.output.filename",
+            "TF.sites.in.DNA.sequence.annotated.image.output.filename"
+        ]
+    },
+     {
+        "name": "Plotting Parameters",
+        "description": "",
+        "hidden": false,
+        "parameters": [
+            "plot.dimensions",
+            "plot.resolution",
+            "region.of.DNA.to.visualize",
+            "number.of.bases.included.per.plot"
+        ]
+    }
+]
