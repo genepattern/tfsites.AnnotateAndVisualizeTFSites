@@ -1,4 +1,4 @@
-# tfsites.AnnotateTfSites v1
+# tfsites.AnnotateAndVisualizeTFSites v1
 
 **Author(s):** Joe Solvason  
 
@@ -13,7 +13,7 @@
 
 ## Introduction
 
-`annotateAndVisualizeTfSites` annotates transcription factor binding sites across a DNA sequence. Multiple transcription factors can be analyzed. Each binding site is labeled with the TF name and a unique binding site ID. If a relative affinity dataset from defineTfSites is provided for a transcription factor, the affinity of this site will be labeled and the intensity of the binding site’s color will be proportional to the affinity.
+`AnnotateAndVisualizeTfSites` annotates transcription factor binding sites across a DNA sequence. Multiple transcription factors can be analyzed. Each binding site is labeled with the TF name and a unique binding site ID. If a relative affinity dataset from defineTfSites is provided for a transcription factor, the affinity of this site will be labeled and the intensity of the binding site’s color will be proportional to the affinity.
 
 
 ## Methodology
@@ -31,35 +31,32 @@ If the sequence is greater than 500 nucleotides in length, the annotation images
 
 ### Inputs and Outputs
 
-- <span style="color: red;">*</span>**DNA Sequences To Annotate (.tsv)**
+- <span style="color: red;">*</span>**DNA sequence(s) to annotate (.tsv)**
     - This file contains one or more DNA sequences to be annotated. 
-- **Relative Affinity PBM Data (.tsv)**
-    - `Default = None`
-    - This file is the normalized PBM data file for a transcription factor obtained from `defineTfSites.` It contains the relative affinity for every possible k-mer.
-- <span style="color: red;">*</span>**TF Sites Output Table (.tsv)**
+- **TF information (.tsv)**
+    - This file contains all the information for the transcription factors being analyzed, including its name, binding site definition, desired color on the plot, any relative PBM affinity data, and any PFM score data.
+- **all TF reference data**
+    - File(s) referenced in the TF information file.     
+- <span style="color: red;">*</span>**TF sites in DNA sequence table output filename (.tsv)**
     - Name of the output file containing the list of binding sites.
-- <span style="color: red;">*</span>**Annotated Sequence Image(s)  (.png)**
+- <span style="color: red;">*</span>**TF sites in DNA sequence annotated image output filename  (.png)**
     - Base name of the output file for the plots. If the length of the sequence is greater than 500, the visualization will be broken up into multiple output files with the following name format: `[base name]_zoom=[start pos],[end pos].png`
 
 ### Other Parameters
-- <span style="color: red;">*</span>**TF Name (string)**
-    - Name of transcription factor that is being analyzed.
-- <span style="color: red;">*</span>**TF IUPAC Definition (string)**
-    - IUPAC definition of the core binding site for a transcription factor (see here). 
-- <span style="color: red;">*</span>**TF Binding Site Color (string)**
-    - Color of the binding sites on the plot, for the transcription factor being analyzed.
-- **Plot Resolution (integer)**
+- **plot dimensions (integer)**
+    - `Default = 200`
+    - Height and width of the image in inches, seperated by a comma. 
+- **plot resolution (integer)**
     - `Default = 200`
     - Resolution of the plot, in dots (pixels) per inch
-- **Zoom Window (dash-separated string)**
+- **region of DNA to visualize (dash-separated string)**
     - `Default = None`
     - Given a start position and an end position, zoom into a portion of the sequence. The numbers in the range are inclusive. For example, the first 200 nucleotides of the sequence would be specified as: `1-200.`
-    - If zoom window is specified, then image output window is ignored
-- **Image Output Window (integer)**
+    - If `region of DNA to visualize` is specified, then `number of bases included per plot` is ignored
+- **number of bases included per plot (integer)**
     - `Default = 500`
     - Interval size (in nucleotides) used to partition the output plot. By default, the sequence will be divided into 500-nucleotide segments.
-    - If image output window is specified, then zoom window is ignored
-
+    - If `region of DNA to visualize` is specified, then `number of bases included per plot` is ignored
 
 ## Input File(s)
 
