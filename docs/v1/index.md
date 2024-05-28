@@ -13,12 +13,12 @@
 
 ## Introduction
 
-`AnnotateAndVisualizeTfSites` annotates transcription factor binding sites across a DNA sequence. Multiple transcription factors can be analyzed. Each binding site is labeled with the TF name and a unique binding site ID. If a relative affinity dataset from defineTfSites is provided for a transcription factor, the affinity of this site will be labeled and the intensity of the binding site’s color will be proportional to the affinity.
+`AnnotateAndVisualizeTfSites` annotates transcription factor binding sites across a DNA sequence. Multiple transcription factors can be analyzed. Each binding site is labeled with the TF name and a unique binding site ID. If a relative affinity/score dataset from defineTfSites is provided for a transcription factor, the  affinity/score of this site will be labeled and the intensity of the binding site’s color will be proportional to the  affinity/score.
 
 
 ## Methodology
 
-We iterate across every k-mer in the DNA sequence and identify those that conform to the IUPAC definition for transcription factor binding sites. For each binding site, we report its sequence, position, TF name, affinity (if PBM data is given), direction (“+” if it follows the given IUPAC and “-” if it follows the reverse complement of the IUPAC), and a unique ID. 
+We iterate across every k-mer in the DNA sequence and identify those that conform to the IUPAC definition for transcription factor binding sites. For each binding site, we report its sequence, position, TF name,  affinity/score (if PBM/PFM data is given), direction (“+” if it follows the given IUPAC and “-” if it follows the reverse complement of the IUPAC), and a unique ID. 
 
 Using the binding sites identified in the DNA sequence, an image of the DNA sequence and all annotated binding sites is generated. Each binding site is plotted as a polygon that points in the direction of the site (right for positive, left for negative, and straight for a palindrome sequence).  
 
@@ -32,57 +32,74 @@ If the sequence is greater than 500 nucleotides in length, the annotation images
 ### Inputs and Outputs
 
 - <span style="color: red;">*</span>**DNA sequence(s) to annotate (.tsv)**
-    - This file contains one or more DNA sequences to be annotated. 
-- **TF information (.tsv)**
-    - This file contains all the information for the transcription factors being analyzed, including its name, binding site definition, desired color on the plot, any relative PBM affinity data, and any PFM score data.
+    - File containing one or more DNA sequences to be annotated. 
+- <span style="color: red;">*</span>**TF information (.tsv)**
+    - File containing all the information for the transcription factors being analyzed, including its name, binding site definition, desired color on the plot, any PBM relative affinity data, and any PFM relative score data.
 - **all TF reference data**
     - File(s) referenced in the TF information file.     
-- <span style="color: red;">*</span>**TF sites in DNA sequence table output filename (.tsv)**
-    - Name of the output file containing the list of binding sites.
-- <span style="color: red;">*</span>**TF sites in DNA sequence annotated image output filename  (.png)**
-    - Base name of the output file for the plots. If the length of the sequence is greater than 500, the visualization will be broken up into multiple output files with the following name format: `[base name]_zoom=[start pos],[end pos].png`
+- <span style="color: red;">*</span>**output directoryname**
+    - `Default = ./`
+    - Name of the directory to which all files will be outputted. The table output will be formatted as `annotateTfSites-table_seq={seq_name}_tf={tf name}.tsv` and the image output will be formatted as `visualizeTfSites-image_seq={seq_name}_start-pos={start coordinate}.png`. 
 
-### Other Parameters
+### Plotting Parameters
+- <span style="color: red;">*</span>**output image format (string)**
+    - Drop down menu, user can select `Zoom` or `Windows`
+    - Select the format in which the images will be outputted. `Zoom` indicates the region of the DNA sequence to visualize, given a start and end coordinate (see zoom range below). `Windows` will output the entire DNA sequence into separate image "windows". The window size, or the number of bases plotted per window, is given by the `window size` option below.
+- **zoom range (dash-separated string)**
+    - `Default = None`
+    - Given a start position and an end position, zoom into a portion of the sequence. The numbers in the range are inclusive and 0-indexed. For example, the first 200 nucleotides of the sequence would be specified as: 0-199.
+    - Ignored if `output image format = Windows`
+- **window size (integer)**
+    - `Default = 500`
+    - Interval size (in nucleotides) to separate the output plot into. By default, the sequence will be divided into 500-nucleotide segments.
+    - Ignored if `output image format = Zoom`
 - **plot dimensions (integer)**
-    - `Default = 200`
+    - `Default = None`
     - Height and width of the image in inches, seperated by a comma. 
 - **plot resolution (integer)**
     - `Default = 200`
     - Resolution of the plot, in dots (pixels) per inch
-- **region of DNA to visualize (dash-separated string)**
-    - `Default = None`
-    - Given a start position and an end position, zoom into a portion of the sequence. The numbers in the range are inclusive. For example, the first 200 nucleotides of the sequence would be specified as: `1-200.`
-    - If `region of DNA to visualize` is specified, then `number of bases included per plot` is ignored
-- **number of bases included per plot (integer)**
-    - `Default = 500`
-    - Interval size (in nucleotides) used to partition the output plot. By default, the sequence will be divided into 500-nucleotide segments.
-    - If `region of DNA to visualize` is specified, then `number of bases included per plot` is ignored
 
 ## Input File(s)
 
-1.  DNA Sequences To Annotate (.tsv)
+1.  DNA Sequence(s) To Annotate (.tsv)
 - Columns:
-    - `Seq_name:` name of the DNA sequence
-    - `Seq:` the sequence
+    - `Sequence Name:` name of the DNA sequence
+    - `Sequence:` the sequence
  
 ```
-seq_name	    seq
+Sequence Name	    Sequence
 ZRS                 AACTTTAATGCCTATGTTTGATTTGAAGTCATAGCATAAAAGGTAACATAAGCAACATCCTGACCAATTATCCAAACCATCCAGACATCCCTGAATGGC...
 Hand2_mm1689        CACCACTGGGTGATCCATAGTATGGAATATTTTTATGAGAAACAGCCACATAACATGTACCTGTTAATGTAGGCTTTGTGTTTATTTGCAATAGCAGAG...
 ```
+
+2. TF information (.tsv)
+- Columns:
+    - `TF Name:` name of the transcription factor
+    - `Binding Site Definition:` minimal IUPAC binding site definition for transcription factor
+    - `Color:` binding site color on the output visualization
+    - `PBM Reference Data:` relative affinity data obtained from DefineTfSites.from.PBM
+    - `PFM Reference Data:` relative score data obtained from DefineTfSites.from.PFM
+ 
+```
+TF Name     Binding Site Definition     Color     PBM Reference Data           PBM Reference Data
+ETS         NNGGAWNN                    blue      03-input_ets-norm-pbm.tsv	
+HOX         NYNNTNAA                    gold      03-input_hox-norm-pbm.tsv	
+HAND        CANNTG                      pink	       
+```
     
-2. Relative Affinity PBM data (.tsv)
+3. All TF Reference Data (.tsv)
 - Columns
-  - `Seq:` the sequence of every possible k-mer
-  - `Rel_aff:` the relative affinity of the k-mer normalized to the max IUPAC k-mer
+  - `PBM Kmer:` the sequence of every possible k-mer
+  - `PBM Relative Affinity:` the relative affinity of the k-mer normalized to the max IUPAC k-mer
 
 ```
-seq          rel_aff
-AAAAAAAA     0.147
-AAAAAAAC     0.107
+PBM Kmer     PBM Relative Affinity
+AAAAAAAA     0.15
+AAAAAAAC     0.11
 AAAAAAAG     0.13
-AAAAAAAT     0.125
-AAAAAACA     0.123
+AAAAAAAT     0.13
+AAAAAACA     0.12
 ```
 
        
@@ -90,21 +107,22 @@ AAAAAACA     0.123
 
 1.  TF Sites Output Table (.tsv)
 - Columns
-    - `Seq_name:` Name of the sequence
-    - `Kmer_id:` unique ID associated with each k-mer
+    - `Sequence Name:` Name of the sequence
+    - `Kmer ID:` unique ID associated with each k-mer
     - `Kmer:` sequence of the k-mer
-    - `Pos-1idx:` starting position of the k-mer
-    - `Aff:` relative affinity of the k-mer
-    - `Site_direction:` direction of the binding site (+ if it follows the given IUPAC or - if it follows the reverse complement of the IUPAC)
-    - `Duplicate_kmer_seq_ids:` name of kmer IDs that have the same k-mer sequence
+    - `Position (0-indexed):` starting position of the k-mer, where counting begins at zero
+    - `PBM Affinity:` relative affinity of the k-mer
+    - `PFM Score:` relative score of the k-mer
+    - `Site Direction:` direction of the binding site (+ if it follows the given IUPAC or - if it follows the reverse complement of the IUPAC)
+    - `Duplicate Kmer IDs:` name of kmer IDs that have the same k-mer sequence
 
 ```
-seq_name        kmer_id	         kmer        pos-1idx   aff      site_direction  duplicate_kmer_seq_ids
-Hand2_mm1689    Hand2_mm1689:2	 ATGGAATA    22         0.103    +               Hand2_mm1689:2,22
-Hand2_mm1689    Hand2_mm1689:3	 GAGGAACT    114        0.131    +	
-Hand2_mm1689    Hand2_mm1689:4	 ATGGATTC    155        0.103    +	
-Hand2_mm1689    Hand2_mm1689:5	 TGATCCTA    344        0.095    -	
-Hand2_mm1689    Hand2_mm1689:6	 AATTCCAT    494        0.111    -               Hand2_mm1689:17,6
+Sequence Name    Kmer ID            Kmer        Position (0-indexed)   Affinity     Site Direction    Duplicate Kmer IDs
+Hand2_mm1689     Hand2_mm1689:2     ATGGAATA    22                     0.10         +                 Hand2_mm1689:2,22
+Hand2_mm1689     Hand2_mm1689:3     GAGGAACT    114                    0.13         +	
+Hand2_mm1689     Hand2_mm1689:4     ATGGATTC    155                    0.10         +	
+Hand2_mm1689     Hand2_mm1689:5     TGATCCTA    344                    0.10         -	
+Hand2_mm1689     Hand2_mm1689:6     AATTCCAT    494                    0.11         -                 Hand2_mm1689:17,6
 
 ```
 
