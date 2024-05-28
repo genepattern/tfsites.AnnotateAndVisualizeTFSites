@@ -117,22 +117,22 @@ AAAAAACA     0.12
     - `Duplicate Kmer IDs:` name of kmer IDs that have the same k-mer sequence
 
 ```
-Sequence Name    Kmer ID            Kmer        Position (0-indexed)   Affinity     Site Direction    Duplicate Kmer IDs
-Hand2_mm1689     Hand2_mm1689:2     ATGGAATA    22                     0.10         +                 Hand2_mm1689:2,22
-Hand2_mm1689     Hand2_mm1689:3     GAGGAACT    114                    0.13         +	
-Hand2_mm1689     Hand2_mm1689:4     ATGGATTC    155                    0.10         +	
-Hand2_mm1689     Hand2_mm1689:5     TGATCCTA    344                    0.10         -	
-Hand2_mm1689     Hand2_mm1689:6     AATTCCAT    494                    0.11         -                 Hand2_mm1689:17,6
+Sequence Name    Kmer ID     Kmer         Position (0-indexed)   PBM Affinity     Site Direction    Duplicate Kmer IDs
+Hand2            Hand2:2     ATGGAATA     22                     0.10             +                 Hand2_mm1689:2,22
+Hand2            Hand2:3     GAGGAACT     114                    0.13             +	
+Hand2            Hand2:4     ATGGATTC     155                    0.10             +	
+Hand2            Hand2:5     TGATCCTA     344                    0.10             -	
+Hand2            Hand2:6     AATTCCAT     494                    0.11             -                 Hand2_mm1689:17,6
 
 ```
 
-2.  Annotated Sequence Image(s)  (.png)
+2.  Annotated Sequence Image(s) (.png)
 
 - ZRS sequence: 
-   <img src="./04-output_vis-sites-zrs-start_pos=0.png"/>
+   <img src="./visualizeInSilicoSnvs-image_seq=ZRS_seq=ZRS-start_pos=0.png"/>
 
 - Hand2_mm1689 sequence:
-   <img src="./04-output_vis-sites-hand2-start_pos=0.png"/>
+   <img src="./visualizeInSilicoSnvs-image_seq=ZRS_seq=ZRS-start_pos=0.png"/>
     
   
 ## Example Data
