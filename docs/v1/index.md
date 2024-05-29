@@ -13,16 +13,16 @@
 
 ## Introduction
 
-`AnnotateAndVisualizeTfSites` annotates transcription factor binding sites across a DNA sequence. Multiple transcription factors can be analyzed. Each binding site is labeled with the TF name and a unique binding site ID. If a relative affinity/score dataset from defineTfSites is provided for a transcription factor, the  affinity/score of this site will be labeled and the intensity of the binding site’s color will be proportional to the  affinity/score.
+`AnnotateAndVisualizeTfSites` annotates transcription factor binding sites across a DNA sequence. Multiple transcription factors can be analyzed. Each binding site is labeled with the TF name and a unique binding site ID. If a relative affinity/score dataset from the `DefineTfSites` modules is provided for a transcription factor, the  affinity/score of this site will be labeled and the intensity of the binding site’s color will be proportional to the  affinity/score.
 
 
 ## Methodology
 
-We iterate across every k-mer in the DNA sequence and identify those that conform to the IUPAC definition for transcription factor binding sites. For each binding site, we report its sequence, position, TF name,  affinity/score (if PBM/PFM data is given), direction (“+” if it follows the given IUPAC and “-” if it follows the reverse complement of the IUPAC), and a unique ID. 
+We iterate across every k-mer in the DNA sequence and identify those that conform to the IUPAC definition for transcription factor binding sites. For each binding site, we report its sequence, position, TF name,  affinity/score (if PBM/PFM data is given), direction (“+” if it follows the given binding site definition and “-” if it follows the reverse complement of the binding site definition), and a unique ID. 
 
 Using the binding sites identified in the DNA sequence, an image of the DNA sequence and all annotated binding sites is generated. Each binding site is plotted as a polygon that points in the direction of the site (right for positive, left for negative, and straight for a palindrome sequence).  
 
-If the sequence is greater than 500 nucleotides in length, the annotation images are saved to multiple files. Each file contains a maximum of 500 nucleotides. 
+If the sequence is greater than 500 nucleotides in length, the annotated images are saved to multiple files. Each file contains a maximum of 500 nucleotides. 
 
 
 ## Parameters
@@ -37,9 +37,6 @@ If the sequence is greater than 500 nucleotides in length, the annotation images
     - File containing all the information for the transcription factors being analyzed, including its name, binding site definition, desired color on the plot, any PBM relative affinity data, and any PFM relative score data.
 - **all TF reference data**
     - File(s) referenced in the TF information file.     
-- <span style="color: red;">*</span>**output directoryname**
-    - `Default = ./`
-    - Name of the directory to which all files will be outputted. The table output will be formatted as `annotateTfSites-table_seq={seq_name}_tf={tf name}.tsv` and the image output will be formatted as `visualizeTfSites-image_seq={seq_name}_start-pos={start coordinate}.png`. 
 
 ### Plotting Parameters
 - <span style="color: red;">*</span>**output image format (string)**
@@ -117,22 +114,24 @@ AAAAAACA     0.12
     - `Duplicate Kmer IDs:` name of kmer IDs that have the same k-mer sequence
 
 ```
-Sequence Name    Kmer ID     Kmer         Position (0-indexed)   PBM Affinity     Site Direction    Duplicate Kmer IDs
-Hand2            Hand2:2     ATGGAATA     22                     0.10             +                 Hand2_mm1689:2,22
-Hand2            Hand2:3     GAGGAACT     114                    0.13             +	
-Hand2            Hand2:4     ATGGATTC     155                    0.10             +	
-Hand2            Hand2:5     TGATCCTA     344                    0.10             -	
-Hand2            Hand2:6     AATTCCAT     494                    0.11             -                 Hand2_mm1689:17,6
-
+Sequence Name    Kmer ID     Kmer          Position (0-indexed)    PBM Affinity   PFM Score    Site Direction    Duplicate Kmer IDs
+Hand2            Hand2:1     TGATCCAT      10                      0.11                         -	
+Hand2            Hand2:2     ATGGAATA      21                      0.1                          +                Hand2:2,Hand2:22
+Hand2            Hand2:3     GAGGAACT      113                     0.13                         +	
+Hand2            Hand2:4     ATGGATTC      154                     0.1                          +	
+Hand2            Hand2:5     TGATCCTA      343                     0.1                          -	
+Hand2            Hand2:6     AATTCCAT      493                     0.11                         -                Hand2:6,Hand2:17
 ```
 
 2.  Annotated Sequence Image(s) (.png)
 
 - ZRS sequence: 
-   <img src="./visualizeInSilicoSnvs-image_seq=ZRS_seq=ZRS-start_pos=0.png"/>
+   <img src="./visualizeInSilicoSnvs-image_seq=ZRS-start_pos=0.png"/>
+   <img src="./visualizeInSilicoSnvs-image_seq=ZRS-start_pos=250.png"/>
 
 - Hand2_mm1689 sequence:
-   <img src="./visualizeInSilicoSnvs-image_seq=ZRS_seq=ZRS-start_pos=0.png"/>
+   <img src="./visualizeInSilicoSnvs-image_seq=Hand2-start_pos=0.png"/>
+   <img src="./visualizeInSilicoSnvs-image_seq=Hand2-start_pos=250.png"/>
     
   
 ## Example Data
