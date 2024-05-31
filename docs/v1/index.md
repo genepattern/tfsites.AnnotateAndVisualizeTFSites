@@ -67,7 +67,7 @@ If the sequence is greater than 500 nucleotides in length, the annotated images 
 ```
 Sequence Name	    Sequence
 ZRS                 AACTTTAATGCCTATGTTTGATTTGAAGTCATAGCATAAAAGGTAACATAAGCAACATCCTGACCAATTATCCAAACCATCCAGACATCCCTGAATGGC...
-Hand2_mm1689        CACCACTGGGTGATCCATAGTATGGAATATTTTTATGAGAAACAGCCACATAACATGTACCTGTTAATGTAGGCTTTGTGTTTATTTGCAATAGCAGAG...
+Hand2               CACCACTGGGTGATCCATAGTATGGAATATTTTTATGAGAAACAGCCACATAACATGTACCTGTTAATGTAGGCTTTGTGTTTATTTGCAATAGCAGAG...
 ```
 
 2. TF information (.tsv)
@@ -129,7 +129,7 @@ Hand2            Hand2:6     AATTCCAT      493                     0.11         
    <img src="./visualizeInSilicoSnvs-image_seq=ZRS-start_pos=0.png"/>
    <img src="./visualizeInSilicoSnvs-image_seq=ZRS-start_pos=250.png"/>
 
-- Hand2_mm1689 sequence:
+- Hand2 sequence:
    <img src="./visualizeInSilicoSnvs-image_seq=Hand2-start_pos=0.png"/>
    <img src="./visualizeInSilicoSnvs-image_seq=Hand2-start_pos=250.png"/>
     
