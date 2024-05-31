@@ -75,8 +75,8 @@ Hand2               CACCACTGGGTGATCCATAGTATGGAATATTTTTATGAGAAACAGCCACATAACATGTAC
     - `TF Name:` name of the transcription factor
     - `Binding Site Definition:` minimal IUPAC binding site definition for transcription factor
     - `Color:` binding site color on the output visualization
-    - `PBM Reference Data:` relative affinity data obtained from DefineTfSites.from.PBM
-    - `PFM Reference Data:` relative score data obtained from DefineTfSites.from.PFM
+    - `PBM Reference Data:` relative affinity data obtained from `DefineTfSites.from.PBM`
+    - `PFM Reference Data:` relative score data obtained from `DefineTfSites.from.PFM`
  
 ```
 TF Name     Binding Site Definition     Color     PBM Reference Data           PBM Reference Data
