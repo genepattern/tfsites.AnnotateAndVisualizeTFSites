@@ -79,8 +79,8 @@ Hand2               CACCACTGGGTGATCCATAGTATGGAATATTTTTATGAGAAACAGCCACATAACATGTAC
  
 ```
 TF Name     Binding Site Definition     Color     PBM Reference Data           PFM Reference Data
-ETS         NNGGAWNN                    blue      03-input_ets-norm-pbm.tsv    
-HOX         NYNNTNAA                    gold                                   03-input_hox-norm-pfm.tsv	
+ETS         NNGGAWNN                    blue      input_ets-pbm.tsv    
+HOX         NYNNTNAA                    gold      input_hox-pbm.tsv
 HAND        CANNTG                      pink	       
 ```
     
@@ -90,6 +90,7 @@ HAND        CANNTG                      pink
   - `PBM Kmer:` the sequence of every possible k-mer
   - `PBM Relative Affinity:` the relative affinity of each k-mer normalized to the k-mer with the highest MFI
 
+ETS
 ```
 PBM Kmer     PBM Relative Affinity
 AAAAAAAA     0.15
@@ -99,16 +100,14 @@ AAAAAAAT     0.13
 AAAAAACA     0.12
 ```
 
-- Columns for PFM Reference Data
-  - `PFM Kmer:` the sequence of every possible k-mer
-  - `PFM Relative Score:` the relative score of the k-mer normalized to the k-mer with the highest score
+HOX
 ```
-PFM Kmer     PFM Relative Score
-AAAAAAAA     0.15
-AAAAAAAC     0.11
-AAAAAAAG     0.13
-AAAAAAAT     0.13
-AAAAAACA     0.12
+PBM Kmer     PBM Relative Affinity
+AAAAAAAA     0.55
+AAAAAAAC     0.56
+AAAAAAAG     0.54
+AAAAAAAT     0.54
+AAAAAACA     0.56
 ```
 
        
