@@ -101,7 +101,7 @@ AAAAAACA     0.12
 
 - Columns for PFM Reference Data
   - `PFM Kmer:` the sequence of every possible k-mer
-  - `PFM Relative Score:` the relative score of the k-mer normalized to the kmer with the highest score
+  - `PFM Relative Score:` the relative score of the k-mer normalized to the k-mer with the highest score
 ```
 PFM Kmer     PFM Relative Score
 AAAAAAAA     0.15
