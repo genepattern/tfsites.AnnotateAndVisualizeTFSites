@@ -3,7 +3,7 @@
 JVMLevel=
 LSID=urn\:lsid\:8080.gpserver.ip-172-31-26-71.ip-172-31-26-71.ec2.internal\:genepatternmodules\:709\:1
 author=
-commandLine=python /build/tfsites-webportal/03-annotateAndVisualizeTfSites/03-annotateAndVisualizeTfSites.py  -d <DNA.sequence(s).to.annotate> -T <TF.information>  -R <all.TF.reference.data> -o <output.image.format>   <plot.dimensions>  <plot.resolution> <zoom.range> -n <window.size>    
+commandLine=python /build/tfsites-webportal/03-annotateAndVisualizeTfSites/03-annotateAndVisualizeTfSites.py  -d <DNA.sequence(s).to.annotate> -T <TF.information>  -R <all.TF.reference.data> -o <output.image.format>   <plot.dimensions>  <plot.resolution> <zoom.range> -w <window.size>    
 cpuType=any
 description=
 documentationUrl=https://genepattern.github.io/tfsites.annotateTfsites/v1/
