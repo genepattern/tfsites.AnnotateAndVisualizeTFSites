@@ -7,8 +7,6 @@
             "DNA.sequence(s).to.annotate",
             "TF.information",
             "all.TF.reference.data",
-            "TF.sites.in.DNA.sequence.table.output.filename",
-            "TF.sites.in.DNA.sequence.annotated.image.output.filename"
         ]
     },
      {
@@ -16,10 +14,11 @@
         "description": "",
         "hidden": false,
         "parameters": [
+            "output.image.format",
+            "zoom.range",
+            "window.size",
             "plot.dimensions",
-            "plot.resolution",
-            "region.of.DNA.to.visualize",
-            "number.of.bases.included.per.plot"
+            "plot.resolution"
         ]
     }
 ]
