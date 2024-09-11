@@ -40,16 +40,16 @@ The image can be outputted in one of two ways: (1) zoom into a portion of the se
  
 ### PFM Parameters
 - **batch PFM custom input (.txt)**
-    - File containing all pfm matrices to predict binding sites.
+    - File containing all PFM matrices to predict binding sites.
 - **batch PFM minimum score (float)**
     - `Default = 0.7`
     -  Required PFM score to predict a site. Does not apply to PFMs referenced in the “TF information” file. 
 - **batch PFM predicted site color (string)**
     - `Default = grey`
-    - Color of sites for PWMs. Find color options [here](https://matplotlib.org/stable/gallery/color/named_colors.html). 
+    - Color of sites for PFMs. Find color options [here](https://matplotlib.org/stable/gallery/color/named_colors.html). 
 - **use pseudocounts to calculate score (boolean)**
     - `Default = False`
-    - Choose if you want to use pseudocounts. Description of what pseudocounts are here.
+    - Choose if you want to use pseudocounts. Find description of pseudocounts [here]().
 
 ### Plotting Parameters
 - **output svg (boolean)**
@@ -57,7 +57,7 @@ The image can be outputted in one of two ways: (1) zoom into a portion of the se
     - Option to output images as SVG in addition to PNG. SVG are preferable for manuscript preparation.
 - **plot resolution (integer)**
     - `Default = 200`
-    - Resolution of the plot, in dots (pixels) per inch
+    - Resolution of the plot, in dots (pixels) per inch.
 - **zoom range (dash-separated string)**
     - `Default = None`
     - Given a start position and an end position, zoom into a portion of the sequence. The numbers in the range are inclusive and 1-indexed. For example, the first 200 nucleotides of the sequence would be specified as: 1-200.
@@ -77,18 +77,18 @@ Hand2               CACCACTGGGTGATCCATAGTATGGAATATTTTTATGAGAAACAGCCACATAACATGTAC
 2. TF information (.tsv)
 - Columns:
     - `TF Name:` name of the transcription factor
-    - `Binding Site Definition:` minimal IUPAC binding site definition for transcription factor
     - `Color:` binding site color on the output visualization
+    - `Binding Site Definition:` minimal IUPAC binding site definition for transcription factor (optional)
     - `Reference Data:` relative affinity data obtained from `DefineTfSites.from.PBM` or relative score data (optional)
-    - `Minimum Score:` threshold required to predict a binding site using PFM scoring
-    - 'Minimum Affinity:' threshold required to plot binding sites above a certain affinity
+    - `Minimum Score:` threshold required to predict a binding site using PFM scoring (optional)
+    - `Minimum Affinity:` threshold required to plot binding sites above a certain affinity (optional)
  
 ```
-TF Name    Binding Site Definition   Color    Reference Data                Minimum Score   Minimum Affinity
-ETS        NNGGAWNN                  blue     input_ets1-pbm.tsv    
-HOX        NYNNTNAA                  gold     input_hoxa13-pbm.tsv                          0.12
-HAND       CANNTG                    pink
-PBX2                                 orange   input_MA1113.3-pbx2-pfm.txt   0.8
+TF Name    Color       Binding Site Definition    Reference Data                Minimum Score   Minimum Affinity
+ETS        blue        NNGGAWNN                   input_ets1-pbm.tsv    
+HOX        gold        NYNNTNAA                   input_hoxa13-pbm.tsv                          0.12
+HAND       pink        CANNTG
+PBX2       orange                                 input_MA1113.3-pbx2-pfm.txt   0.8
 ```
     
 3. all TF reference data (.tsv)
