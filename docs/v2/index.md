@@ -156,8 +156,8 @@ T  [  5697    160    256    969   6290     83    145    138    376    549    683
     - `End Position (1-indexed):` starting position of the k-mer, where counting begins at one
     - `Ref Data Type:` either 'Affinity' or 'Score' depending on type of data being used (optional)
     - `Value:` relative affinity or score of the k-mer (optional)
-    - `Site Direction:` direction of the binding site (+ if it follows the given IUPAC or - if it follows the reverse complement of the IUPAC)
-    - `Duplicate Kmer IDs:` list of kmer IDs for k-mers that have the same sequence
+    - `Site Direction:` direction of the binding site 
+    - `Duplicate Kmer IDs:` list of k-mer IDs for k-mers that have the same sequence
 
 tf info table
 ```
