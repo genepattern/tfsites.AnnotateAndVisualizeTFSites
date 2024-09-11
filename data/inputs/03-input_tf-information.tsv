@@ -1,0 +1,5 @@
+TF Name	Color	Binding Site Definition	Reference Data	Minimum Score	Minimum Affinity
+ETS	blue	NNGGAWNN	input_ets1-pbm.tsv		
+HOX	gold	NYNNTNAA	input_hoxa13-pbm.tsv		0.12
+HAND	pink	CANNTG			
+PBX2	orange		input_pbx2-MA1113.3-pfm.txt	0.8	
