@@ -13,16 +13,18 @@
 
 ## Introduction
 
-`AnnotateAndVisualizeTfSites` annotates transcription factor binding sites across a DNA sequence. Multiple transcription factors can be analyzed. Each binding site is labeled with the TF name and a unique binding site ID. If a relative affinity/score dataset is provided for a transcription factor, the  affinity/score of this site will be labeled and the intensity of the binding site’s color will be proportional to the  affinity/score.
+`AnnotateAndVisualizeTfSites` annotates transcription factor binding sites across a DNA sequence. Multiple transcription factors can be analyzed. Each binding site is labeled with a unique binding site ID and its start and end position. If reference data is provided for a transcription factor, the affinity/score of this site will be labeled and the intensity of the binding site’s color will be proportional to the affinity/score.
 
 
 ## Methodology
 
-We iterate across every k-mer in the DNA sequence and identify those that conform to the binding site definition for each transcription factor. For each binding site, we report its sequence, position, TF name,  affinity/score (if PBM/PFM data is given), direction (“+” if it follows the given binding site definition and “-” if it follows the reverse complement of the binding site definition), and a unique ID. 
+Transcription factor information can be given in multiple ways. It can be provided in the TF information file and/or in the batch PFM custom file. For batch PFM data, there are several features that can be customized, including the minimum score, site color, and use of pseudocounts.
 
-Using the binding sites identified in the DNA sequence, an image of the DNA sequence and all annotated binding sites is generated. Each binding site is plotted as a polygon that points in the direction of the site (right for positive, left for negative, and straight for a palindrome sequence).  
+The two reference data types that can be provided are affinity (i.e. PBM) and score (i.e. PFM). To find predicted binding sites for PBM data, we iterate across every k-mer in the DNA sequence and identify those that conform to the binding site definition for each transcription factor. To find predicted binding sites for PFM data, we can also use a binding site definition but it is not required. If a site definition is not provided, we use the minimum score to define a predicted binding site. For each binding site, we report its sequence, TF name, matrix ID (if using the batch PFM custom option), start position, end position, reference data type, value (if reference data is given), direction (“+” if it follows the given binding site definition and “-” if it follows the reverse complement of the binding site definition), and a unique ID. The TFs given in the TF information file and batch PFM custom file are outputted in two separate files.
 
-The image can be outputted in one of two ways: (1) zoom into a portion of the sequence or (2) separate the entire sequence into windows. If the sequence is greater than 500 nucleotides in length, the sequence will automatically be separated into windows and outputted as separate files. The maximum size for each window is 500 nucleotides.
+Using the list of binding sites predicted in the DNA sequence, an image of the DNA sequence and all annotated binding sites is generated. Each binding site is plotted as a polygon that points in the direction of the site (right for positive, left for negative, and straight for a palindrome sequence).  
+
+If the user wishes to analyze only a portion of the sequence, then a zoom range can be specified. If the sequence is greater than 500 nucleotides in length, the sequence will automatically be separated into 500-bp windows and outputted as separate files. In addition, the individual files will be appended together to create a single output file with the entire sequence. 
 
 
 ## Parameters
@@ -35,12 +37,12 @@ The image can be outputted in one of two ways: (1) zoom into a portion of the se
     - File containing one or more DNA sequences to be annotated. 
 - **TF information (.tsv)**
     - File containing all the information for the transcription factors being analyzed.
-- **TF affinity reference files**
+- **TF affinity reference data**
     - File(s) referenced in the TF information file.
+- **batch PFM custom (.txt)**
+    - File containing all PFM matrices to predict binding sites.
  
 ### PFM Parameters
-- **batch PFM custom input (.txt)**
-    - File containing all PFM matrices to predict binding sites.
 - **batch PFM minimum score (float)**
     - `Default = 0.7`
     -  Required PFM score to predict a site. Does not apply to PFMs referenced in the “TF information” file. 
@@ -61,6 +63,7 @@ The image can be outputted in one of two ways: (1) zoom into a portion of the se
 - **zoom range (dash-separated string)**
     - `Default = None`
     - Given a start position and an end position, zoom into a portion of the sequence. The numbers in the range are inclusive and 1-indexed. For example, the first 200 nucleotides of the sequence would be specified as: 1-200.
+  
 ## Input File(s)
 
 1.  DNA sequence(s) to annotate (.tsv)
@@ -158,14 +161,14 @@ T  [  5697    160    256    969   6290     83    145    138    376    549    683
 
 tf info table
 ```
-Sequence Name    TF Name     Matrix ID    Kmer ID             Kmer                 Start Position (1-indexed)    End Position (1-indexed)  Ref Data Type   Value    Site Direction   Duplicate Kmer IDs
-ZRS              ETS                      ETS:1               CTATCCTG             335                           328                       Affinity        0.15     -
-ZRS              ETS                      ETS:2               TTTTCCCC             432                           425                       Affinity        0.14     -                ETS:1,ETS:20
-ZRS              HOX                      HOX:1               TTTAATAT             323                           316                       Affinity        0.75     -	
-ZRS              HOX                      HOX:2               TTTATGAC             415                           408                       Affinity        0.84     -
-ZRS              HAND                     HAND:1              CAGATG               416                           421
-ZRS              PBX2                     PBX2:1              AATTAATTA            217                           209                       Score           0.83     -	
-ZRS              PBX2                     PBX2:2              CATAAACCA            365                           357                       Score           0.88     -
+Sequence Name    TF Name     Kmer ID      Kmer                Start Position (1-indexed)    End Position (1-indexed)  Ref Data Type   Value    Site Direction   Duplicate Kmer IDs
+ZRS              ETS         ETS:1        CTATCCTG            335                           328                       Affinity        0.15     -
+ZRS              ETS         ETS:2        TTTTCCCC            432                           425                       Affinity        0.14     -                ETS:1,ETS:20
+ZRS              HOX         HOX:1        TTTAATAT            323                           316                       Affinity        0.75     -	
+ZRS              HOX         HOX:2        TTTATGAC            415                           408                       Affinity        0.84     -
+ZRS              HAND        HAND:1       CAGATG              416                           421
+ZRS              PBX2        PBX2:1       AATTAATTA           217                           209                       Score           0.83     -	
+ZRS              PBX2        PBX2:2       CATAAACCA           365                           357                       Score           0.88     -
 ```
 
 batch pfm custom
