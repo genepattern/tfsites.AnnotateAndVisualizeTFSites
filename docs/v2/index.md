@@ -181,12 +181,10 @@ ZRS              PBX3        MA1114.2     PBX3:MA1114.2:2     GGACTGACCAG       
 2.  annotated sequence image(s) (.png)
 
 - ZRS sequence: 
-   <img src="./visualizeInSilicoSnvs-image_seq=ZRS-start_pos=0.png"/>
-   <img src="./visualizeInSilicoSnvs-image_seq=ZRS-start_pos=250.png"/>
+   <img src="./visualizeTfSites-image_seq=ZRS_zoom=320-490.png"/>
 
 - Hand2 sequence:
-   <img src="./visualizeInSilicoSnvs-image_seq=Hand2-start_pos=0.png"/>
-   <img src="./visualizeInSilicoSnvs-image_seq=Hand2-start_pos=250.png"/>
+   <img src="./visualizeTfSites-image_seq=Hand2_zoom=320-490.png"/>
     
   
 ## Example Data
