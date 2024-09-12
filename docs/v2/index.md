@@ -37,9 +37,9 @@ If the user wishes to analyze only a portion of the sequence, then a zoom range 
     - File containing one or more DNA sequences to be annotated. 
 - **TF information (.tsv)**
     - File containing all the information for the transcription factors being analyzed.
-- **TF affinity reference data**
+- **all TF reference data**
     - File(s) referenced in the TF information file.
-- **batch PFM custom (.txt)**
+- **batch PFM custom data (.txt)**
     - File containing all PFM matrices to predict binding sites.
  
 ### PFM Parameters
