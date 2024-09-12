@@ -126,7 +126,7 @@ G  [  1585   1710    317    817    343    569    327    555    352 ]
 T  [  3441    637  28466   2145   1434   1014  28112   2849   2451 ]
 ```
 
-4. batch PFM custom input (.jaspar)
+4. batch PFM custom (.txt)
 - Can provide multiple PFMs 
 
 ```
