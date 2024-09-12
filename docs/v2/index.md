@@ -56,10 +56,10 @@ If the user wishes to analyze only a portion of the sequence, then a zoom range 
 ### Plotting Parameters
 - **output svg (boolean)**
     - `Default = False`
-    - Option to output images as SVG in addition to PNG. SVG are preferable for manuscript preparation.
+    - Option to output images as `.svg` in addition to `.png`. For manuscript preparation, `.svg` format is preferable.
 - **plot resolution (integer)**
     - `Default = 200`
-    - Resolution of the plot, in dots (pixels) per inch.
+    - Resolution of the plot, in dots (pixels) per inch. Manuscripts require 300 DPI. The DPI does not affect the resolution of `.svg` files.
 - **zoom range (dash-separated string)**
     - `Default = None`
     - Given a start position and an end position, zoom into a portion of the sequence. The numbers in the range are inclusive and 1-indexed. For example, the first 200 nucleotides of the sequence would be specified as: 1-200.
