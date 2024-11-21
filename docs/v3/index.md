@@ -37,7 +37,6 @@ If the user wishes to analyze only a portion of the sequence, then a zoom range 
     - File containing one or more DNA sequences to be annotated. 
 - **TF affinity information (.tsv)**
     - File containing all the information for the transcription factors being analyzed. This includes the TF name, color, binding site definition, affinity reference data (optional), and minimum affinity (optional).
-
 - **batch motif input file (.txt)**
     - File containing PWMs to predict and score binding sites.
 - **PWM minimum score (float)**
