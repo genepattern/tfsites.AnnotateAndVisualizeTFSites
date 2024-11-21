@@ -1,5 +1,0 @@
-Sequence Name	TF Name	Matrix ID	Kmer ID	Kmer	Start Position (1-indexed)	End Position (1-indexed)	Ref Data Type	Value	Site Direction	Duplicate Kmer IDs
-Hand2	PBX3	MA1114.1	PBX3:MA1114.1:1	TAGTGAGTCTCTGGAGG	386	370	Score	0.72	-	
-Hand2	PBX3	MA1114.2	PBX3:MA1114.2:1	TGATGGACTTC	353	363	Score	0.71	+	
-Hand2	PBX3	MA1114.2	PBX3:MA1114.2:2	TGAGTCTCTGG	383	373	Score	0.74	-	
-Hand2	PBX3	MA1114.2	PBX3:MA1114.2:3	TAATTTACAGA	472	482	Score	0.71	+	

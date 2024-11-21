@@ -1,8 +1,0 @@
-Sequence Name	TF Name	Kmer ID	Kmer	Start Position (1-indexed)	End Position (1-indexed)	Ref Data Type	Value	Site Direction	Duplicate Kmer IDs
-Hand2	ETS	ETS:1	TGATCCTA	351	344	Affinity	0.1	-	
-Hand2	HOX	HOX:1	TTTCTCAA	391	398	Affinity	0.12	+	
-Hand2	HOX	HOX:2	TTTAAGAA	460	453	Affinity	0.13	-	
-Hand2	HOX	HOX:3	TTAAGAAC	461	454	Affinity	0.12	-	
-Hand2	HOX	HOX:4	TTAATTGT	472	465	Affinity	0.26	-	
-Hand2	HOX	HOX:5	TTTACAGA	482	475	Affinity	0.21	-	
-Hand2	PBX2	PBX2:1	TGTAAATTA	480	472	Score	0.81	-	
