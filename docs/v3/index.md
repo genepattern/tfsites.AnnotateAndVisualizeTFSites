@@ -1,4 +1,4 @@
-# tfsites.AnnotateAndVisualizeTFSites v1
+# tfsites.VisualizeTfSitesOnSequences v1
 
 **Author(s):** Joe Solvason  
 
@@ -13,7 +13,7 @@
 
 ## Introduction
 
-`AnnotateAndVisualizeTfSites` annotates transcription factor binding sites across a DNA sequence. Multiple transcription factors can be analyzed. Each binding site is labeled with a unique binding site ID and its start and end position. If reference data is provided for a transcription factor, the affinity/score of this site will be labeled and the intensity of the binding site’s color will be proportional to the affinity/score.
+`VisualizeTfSitesOnSequences` annotates transcription factor binding sites across a DNA sequence. Multiple transcription factors can be analyzed. Each binding site is labeled with a unique binding site ID and its start and end position. If reference data is provided for a transcription factor, the affinity/score of this site will be labeled and the intensity of the binding site’s color will be proportional to the affinity/score.
 
 
 ## Methodology
