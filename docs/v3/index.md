@@ -159,7 +159,7 @@ ZRS              PBX2        MA1113.3     PBX2:MA1113.3:2     CATAAAATA         
   
 ## Example Data
 
-Example input data is available at [here]()
+Example input data is available at [here](https://github.com/genepattern/tfsites.AnnotateAndVisualizeTFSites/tree/develop/data).
 
     
 ## Version Comments
