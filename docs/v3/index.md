@@ -18,11 +18,11 @@
 
 ## Methodology
 
-Transcription factor information can be given in multiple ways. It can be provided in the TF information file and/or in the PWM data file. For PWM data, there are several features that can be customized, including the minimum score and site color.
+Transcription factor information can be given in multiple ways. It can be provided in the TF information file and/or in the batch motif input file. For batch motif data, there are several features that can be customized, including the minimum score and site color.
 
-The two reference data types that can be provided are affinity (i.e. PBM) and score (i.e. PWM). To find predicted binding sites for affinity data, we iterate across every k-mer in the DNA sequence and identify those that conform to the binding site definition for each transcription factor. To find predicted binding sites for PWM data, we can also use a binding site definition but it is not required. If a site definition is not provided, we use the minimum score to define a predicted binding site. For each binding site, we report its sequence, TF name, matrix ID (if using PWM data), start position, end position, reference data type, value (if reference data is given), direction (“+” if it follows the given binding site definition and “-” if it follows the reverse complement of the binding site definition), and a unique ID. The TFs given in the TF information file and PWM data file are outputted in two separate files.
+The two reference data types that can be provided are affinity (i.e. PBM) and score (i.e. PWM). To find predicted binding sites for affinity data, we iterate across every k-mer in the DNA sequence and identify those that conform to the core binding site definition for each transcription factor. To find predicted binding sites for PWM data, we can also use a binding site definition but it is not required. If a site definition is not provided, we use the minimum score to define a predicted binding site. For each binding site, we report its sequence, TF name, matrix ID (if using PWM data), start position, end position, reference data type, value (if reference data is given), direction (“+” if it follows the given binding site definition and “-” if it follows the reverse complement of the binding site definition), and a unique ID. The TFs given in the TF information file and PWM data file are outputted in two separate files.
 
-Using the list of binding sites predicted in the DNA sequence, an image of the DNA sequence and all annotated binding sites is generated. Each binding site is plotted as a polygon that points in the direction of the site (right for positive, left for negative, and straight for a palindrome sequence).  
+Using the list of binding sites predicted in the DNA sequence, an image of the DNA sequence and all annotated binding sites is generated. Each binding site is plotted as a polygon that points in the direction of the site (right for positive, left for negative, and no direction for a palindrome sequence).  
 
 If the user wishes to analyze only a portion of the sequence, then a zoom range can be specified. If the sequence is greater than 500 nucleotides in length, the sequence will automatically be separated into 500-bp windows and outputted as separate files. In addition, the individual files will be appended together to create a single output file with the entire sequence. 
 
@@ -38,7 +38,7 @@ If the user wishes to analyze only a portion of the sequence, then a zoom range 
 - **TF affinity information (.tsv)**
     - File containing all the information for the transcription factors being analyzed. This includes the TF name, color, binding site definition, affinity reference data (optional), and minimum affinity (optional).
 - **batch motif input file (.txt)**
-    - File containing PWMs to predict and score binding sites.
+    - File containing PWMs to predict and score binding sites. This file can be obtained using `GenerateMotifDatabase`.
 - **PWM minimum score (float)**
     - `Default = 0.7`
     - PWM score required to predict a binding site. 
@@ -74,7 +74,7 @@ ZRS                 AACTTTAATGCCTATGTTTGATTTGAAGTCATAGCATAAAAGGTAACATAAGCAACATCC
     - `TF Name:` name of the transcription factor
     - `Color:` binding site color on the output visualization
     - `Core Site:` minimal IUPAC binding site definition for transcription factor 
-    - `Affinity Data:` relative affinity data obtained from `DefineTfSites` or relative score data (optional)
+    - `Affinity Data:` relative affinity data obtained from `NormalizeTfDnaAffinityData` or relative score data (optional)
     - `Minimum Affinity:` threshold required to plot binding sites above a certain affinity (optional)
  
 ```
