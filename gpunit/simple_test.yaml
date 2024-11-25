@@ -11,10 +11,11 @@ name: "tfsites.VisualizeTFSitesOnSequences - simple test"
 module: "tfsites.VisualizeTFSitesOnSequences"
 params:
     DNA.sequence(s).to.annotate: "data/03-input_batch-enhancers-to-analyze.tsv"
-    TF.information: "data/03-input_tf-information.tsv"
-    all.TF.reference.data: ["data/03-input_hox-norm-pbm.tsv","data/03-input_ets-norm-pbm.tsv"]
-    plot.dimensions: "5,9"
-    number.of.bases.included.per.plot: 500
+    TF.affinity.information: "data/03-input_tf-information.tsv"
+    TF.affinity.files: ["data/03-input_ets1-pbm.tsv","data/03-input_hoxa13-pbm.tsv"]
+    batch.motif.input.file  : "data/03-input_batch-pbx-pwms.txt"
+    PWM.minimum.score: "0.8"
+    zoom.range: 320-490
     plot.resolution: 200
 assertions:
     jobStatus: success
