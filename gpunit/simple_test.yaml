@@ -7,8 +7,8 @@
 # Note: this test uses a custom diff command
 #
 
-name: "tfsites.annotateAndVisualizeTfSites - simple test"
-module:  tfsites.annotateAndVisualizeTfSites
+name: "tfsites.VisualizeTFSitesOnSequences - simple test"
+module: "tfsites.VisualizeTFSitesOnSequences"
 params:
     DNA.sequence(s).to.annotate: "data/03-input_batch-enhancers-to-analyze.tsv"
     TF.information: "data/03-input_tf-information.tsv"

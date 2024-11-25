@@ -5,20 +5,20 @@
         "hidden": false,
         "parameters": [
             "DNA.sequence(s).to.annotate",
-            "TF.information",
-            "all.TF.reference.data",
+            "TF.affinity.information",
+            "batch.motif.input.file",
+            "PWM.minimum.score",
+	    "PWM.binding.site.color"
         ]
     },
      {
-        "name": "Plotting Parameters",
+        "name": "Other Parameters",
         "description": "",
         "hidden": false,
         "parameters": [
-            "output.image.format",
-            "zoom.range",
-            "window.size",
-            "plot.dimensions",
-            "plot.resolution"
+            "output.image.as.svg",
+            "plot.resolution",
+            "zoom.range"
         ]
     }
 ]
