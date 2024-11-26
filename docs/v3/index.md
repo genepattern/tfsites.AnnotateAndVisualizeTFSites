@@ -46,7 +46,9 @@ If the user wishes to analyze only a portion of the sequence, then a zoom range 
     - PWM score required to predict a binding site. 
 - **PWM binding site color (string)**
     - `Default = grey`
-    - Color of sites scored by PWMs on the output visualization. Find color options [here](https://matplotlib.org/stable/gallery/color/named_colors.html). 
+    - Color of sites scored by PWMs on the output visualization. Find color options [here](https://matplotlib.org/stable/gallery/color/named_colors.html).
+- <span style="color: red;">*</span>**output name (string)**
+    - Base name of the output files.
 
 ### Other Parameters
 - **output image as svg (boolean)**
@@ -58,8 +60,6 @@ If the user wishes to analyze only a portion of the sequence, then a zoom range 
 - **zoom range (dash-separated string)**
     - `Default = None`
     - Given a start position and an end position, zoom into a portion of the sequence. The numbers in the range are inclusive and 1-indexed. For example, the first 200 nucleotides of the sequence would be specified as: 1-200.
-- <span style="color: red;">*</span>**output name (string)**
-    - Base name of the output files.
   
 ## Input File(s)
 
