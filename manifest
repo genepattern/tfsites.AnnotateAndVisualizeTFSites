@@ -1,11 +1,10 @@
 #tfsites.AnnotateAndVisualizeTFSites
-#Mon Aug 21 21:11:17 UTC 2023
 JVMLevel=
 LSID=urn:lsid:genepattern.org:module.analysis:00442
 author=Joe Salvasson, modified into a GenePattern module as Ted Liefeld
-commandLine=python /build/tfsites-webportal/03-annotateAndVisualizeTfSites/03-annotateAndVisualizeTfSites.py  -d <DNA.sequence(s).to.annotate> -t <TF.affinity.information> -R <tf.affinity.files>  -p <batch.motif.input> -m <PWM.minimum.score> -c <PWM.binding.site.color> -s <output.image.as.svg>  -r <plot.resolution> -z <zoom.range> 
+commandLine=python /build/tfsites-webportal/03-annotateAndVisualizeTfSites/03-annotateAndVisualizeTfSites.py  -d <DNA.sequence(s).to.annotate> -t <TF.affinity.information> -R <tf.affinity.files>  -p <batch.motif.input.file>  -m <PWM.minimum.score> -c <PWM.binding.site.color> -s <output.image.as.svg>  -r <plot.resolution>   -z <zoom.range>
 cpuType=any
-description=VisualizeTfSitesOnSequences annotates transcription factor binding sites across a DNA sequence. Multiple transcription factors can be analyzed. Each binding site is labeled with a unique binding site ID and its start and end position. If reference data is provided for a transcription factor, the affinity/score of this site will be labeled and the intensity of the binding site’s color will be proportional to the affinity/score.
+description=Annotates transcription factor binding sites across a DNA sequence. Multiple transcription factors can be analyzed. Each binding site is labeled with a unique binding site ID and its start and end position. If reference data is provided for a transcription factor, the affinity/score of this site will be labeled and the intensity of the binding site's color will be proporti
 documentationUrl=https://genepattern.github.io/tfsites.VisualizeTFSitesOnSequences/v3/
 fileFormat=
 job.cpuCount=
@@ -15,6 +14,7 @@ job.walltime=
 language=any
 name=tfsites.VisualizeTFSitesOnSequences
 os=any
+
 p1_MODE=IN
 p1_TYPE=FILE
 p1_default_value=
@@ -72,30 +72,30 @@ p4_type=java.io.File
 p4_value=
 
 p5_MODE=
-p5_TYPE=STRING
-p5_default_value=Windows
+p5_TYPE=TEXT
+p5_default_value=False
 p5_description=Option to output images as .svg in addition to .png. For manuscript preparation, .svg format is preferable.
 p5_fileFormat=
-p5_flag= 
+p5_flag=
 p5_name=output.image.as.svg
 p5_numValues=1
 p5_optional=
 p5_prefix=
-p5_prefix_when_specified=  
+p5_prefix_when_specified=
 p5_type=java.lang.String
-p5_value=Windows;Zoom
+p5_value=False;True
 
 p6_MODE=
-p6_TYPE=Integer
+p6_TYPE=TEXT
 p6_default_value=grey
 p6_description=Color of sites scored by PWMs on the output visualization. Find color options here.
 p6_fileFormat=
 p6_flag=
-p6_name=window.size
+p6_name=PWM.binding.site.color
 p6_numValues=1..1
 p6_optional=
 p6_prefix=
-p6_prefix_when_specified=   
+p6_prefix_when_specified=
 p6_type=java.lang.String
 p6_value=
 
@@ -109,26 +109,27 @@ p7_name=plot.resolution
 p7_numValues=0..1
 p7_optional=
 p7_prefix=
-p7_prefix_when_specified=-r  
+p7_prefix_when_specified=
 p7_type=java.lang.Integer
 p7_value=
 
+
 p8_MODE=
 p8_TYPE=TEXT
-p8_default_value=
-p8_description=Resolution of the plot, in dots (pixels) per inch. Manuscripts require 300 DPI. The DPI does not affect the resolution of .svg files.
+p8_default_value=1-200
+p8_description=Given a start position and an end position, zoom into a portion of the sequence. The numbers in the range are inclusive and 1-indexed. For example, the first 200 nucleotides of the sequence would be specified as: 1-200.
 p8_fileFormat=
 p8_flag=
 p8_name=zoom.range
 p8_numValues=0..1
 p8_optional=on
 p8_prefix=
-p8_prefix_when_specified=-v   
+p8_prefix_when_specified=
 p8_type=java.lang.String
 p8_value=
 
-pr_MODE=
-p9_TYPE=TEXT
+p9_MODE=
+p9_TYPE=FLOAT
 p9_default_value=0.7
 p9_description=PWM score required to predict a binding site.
 p9_fileFormat=
@@ -137,9 +138,10 @@ p9_name=PWM.minimum.score
 p9_numValues=0..1
 p9_optional=on
 p9_prefix=
-p9_prefix_when_specified=-p   
+p9_prefix_when_specified=
 p9_type=java.lang.String
 p9_value=
+
 
 
 privacy=public
