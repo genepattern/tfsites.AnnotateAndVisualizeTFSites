@@ -2,7 +2,7 @@
 
 **Author(s):** Joe Solvason  
 
-**Contact:** Joe Solvason (solvason@eng.ucsd.edu)
+**Contact:** Joe Solvason (solvason@ucsd.edu)
 
 **Adapted as a GenePattern Module by:** Ted Liefeld (jliefeld@cloud.ucsd.edu)
 
@@ -37,6 +37,8 @@ If the user wishes to analyze only a portion of the sequence, then a zoom range 
     - File containing one or more DNA sequences to be annotated. 
 - **TF affinity information (.tsv)**
     - File containing all the information for the transcription factors being analyzed. This includes the TF name, color, binding site definition, affinity reference data (optional), and minimum affinity (optional).
+- **TF affinity files (.tsv)**
+    - File containing a list of affinity data referenced in the TF affinity information file.
 - **batch motif input file (.txt)**
     - File containing PWMs to predict and score binding sites. This file can be obtained using `GenerateMotifDatabase`.
 - **PWM minimum score (float)**
@@ -56,6 +58,8 @@ If the user wishes to analyze only a portion of the sequence, then a zoom range 
 - **zoom range (dash-separated string)**
     - `Default = None`
     - Given a start position and an end position, zoom into a portion of the sequence. The numbers in the range are inclusive and 1-indexed. For example, the first 200 nucleotides of the sequence would be specified as: 1-200.
+- <span style="color: red;">*</span>**output name (string)**
+    - Base name of the output files.
   
 ## Input File(s)
 
