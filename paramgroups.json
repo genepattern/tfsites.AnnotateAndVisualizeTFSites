@@ -6,7 +6,7 @@
         "parameters": [
             "DNA.sequence(s).to.annotate",
             "TF.affinity.information",
-            "tf.affinity.files",
+            "TF.affinity.files",
             "batch.motif.input.file",
             "PWM.minimum.score",
 	    "PWM.binding.site.color"
