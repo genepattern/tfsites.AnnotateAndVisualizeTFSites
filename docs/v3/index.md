@@ -1,4 +1,4 @@
-# tfsites.VisualizeTfSitesOnSequences v1
+# tfsites.VisualizeTfSitesOnSequences v3
 
 **Author(s):** Joe Solvason  
 
