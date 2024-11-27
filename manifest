@@ -2,7 +2,7 @@
 JVMLevel=
 LSID=urn:lsid:genepattern.org:module.analysis:00442
 author=Joe Salvasson, modified into a GenePattern module as Ted Liefeld
-commandLine=python /build/tfsites-webportal/03-visualizeTfSitesOnSequences/03-visualizeTfSitesOnSequences.py  -d <DNA.sequence(s).to.annotate> -t <TF.affinity.information> -R <TF.affinity.files>  -p <batch.motif.input.file>  -m <PWM.minimum.score> -c <PWM.binding.site.color> -s <output.image.as.svg>  -r <plot.resolution>   -z <zoom.range>
+commandLine=python /build/tfsites-webportal/03-visualizeTfSitesOnSequences/03-visualizeTfSitesOnSequences.py  -d <DNA.sequences.to.annotate> -t <TF.affinity.information> -R <TF.affinity.files>  -p <batch.motif.input.file>  -m <PWM.minimum.score> -c <PWM.binding.site.color> -s <output.image.as.svg>  -r <plot.resolution>   -z <zoom.range> -o <output.filename>
 cpuType=any
 description=Annotates transcription factor binding sites across a DNA sequence. Multiple transcription factors can be analyzed. Each binding site is labeled with a unique binding site ID and its start and end position. If reference data is provided for a transcription factor, the affinity/score of this site will be labeled and the intensity of the binding site's color will be proporti
 documentationUrl=https://genepattern.github.io/tfsites.VisualizeTFSitesOnSequences/v3/
@@ -21,7 +21,7 @@ p1_default_value=
 p1_description=File containing one or more DNA sequences to be annotated.
 p1_fileFormat=.tsv
 p1_flag=
-p1_name=DNA.sequence(s).to.annotate
+p1_name=DNA.sequences.to.annotate
 p1_numValues=1..1
 p1_optional=
 p1_prefix=
@@ -60,7 +60,7 @@ p3_value=
 p4_MODE=IN
 p4_TYPE=FILE
 p4_default_value=
-p4_description=Files TO BE WRITTEN
+p4_description=File containing a list of affinity data referenced in the TF affinity information file.
 p4_fileFormat=.tsv
 p4_flag=
 p4_name=TF.affinity.files
@@ -142,6 +142,19 @@ p9_prefix_when_specified=
 p9_type=java.lang.String
 p9_value=
 
+p10_MODE=
+p10_TYPE=TEXT
+p10_default_value=<DNA.sequences.to.annotate_basename>
+p10_description=Base name of the output files.
+p10_fileFormat=
+p10_flag=
+p10_name=output.filename
+p10_numValues=1..1
+p10_optional=
+p10_prefix=
+p10_prefix_when_specified=
+p10_type=java.lang.String
+p10_value=
 
 
 privacy=public

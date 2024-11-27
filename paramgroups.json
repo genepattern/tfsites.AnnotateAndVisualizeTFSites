@@ -4,12 +4,13 @@
         "description": "Required Parameters",
         "hidden": false,
         "parameters": [
-            "DNA.sequence(s).to.annotate",
+            "DNA.sequences.to.annotate",
             "TF.affinity.information",
             "TF.affinity.files",
             "batch.motif.input.file",
             "PWM.minimum.score",
-	    "PWM.binding.site.color"
+	    "PWM.binding.site.color",
+            "output.filename"
         ]
     },
      {
