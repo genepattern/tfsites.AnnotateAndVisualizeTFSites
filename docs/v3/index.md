@@ -47,7 +47,7 @@ If the user wishes to analyze only a portion of the sequence, then a zoom range 
 - **PWM binding site color (string)**
     - `Default = grey`
     - Color of sites scored by PWMs on the output visualization. Find color options [here](https://matplotlib.org/stable/gallery/color/named_colors.html).
-- <span style="color: red;">*</span>**output name (string)**
+- <span style="color: red;">*</span>**output filename (string)**
     - Base name of the output files.
 
 ### Other Parameters
