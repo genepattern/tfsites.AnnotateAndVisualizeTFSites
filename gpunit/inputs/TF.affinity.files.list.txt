@@ -1,0 +1,2 @@
+/opt/gpbeta_2/gp_home/users/ted/uploads/tmp/run606442495620863899.tmp/TF.affinity.files/3/03-input_ets1-pbm.tsv
+/opt/gpbeta_2/gp_home/users/ted/uploads/tmp/run7489144216649050430.tmp/TF.affinity.files/4/03-input_hoxa13-pbm.tsv

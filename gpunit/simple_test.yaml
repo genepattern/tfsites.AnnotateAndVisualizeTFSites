@@ -1,22 +1,25 @@
-# Run this gpunit loccaly by calling:
-# ant -f ${GPUNIT_HOME}/build.xml -Dgpunit.diffStripTrailingCR="--strip-trailing-cr" -Dgp.host="127.0.0.1" -Dgp.url="http://127.0.0.1:8080" -Dgp.user="edjuaro@gmail.com" -Dgp.password="" -Dgpunit.testfolder=`pwd` gpunit
-# OR using gp-beta-ami:
-# ant -f ${GPUNIT_HOME}/build.xml -Dgpunit.diffStripTrailingCR="--strip-trailing-cr" -Dgp.host="gp-beta-ami.genepattern.org" -Dgp.url="https://gp-beta-ami.genepattern.org" -Dgp.user="edjuaro" -Dgp.password="**PUT_PASSWORD_HERE" -Dgpunit.testfolder=`pwd` gpunit
 
-#
-# Note: this test uses a custom diff command
-#
+name: gpunit_96244
+# description: created from job 96244
+# ET(ms): 172000# from server:  https://beta.genepattern.org/gp/
+module: tfsites.VisualizeTFSitesOnSequences
+# lsid: urn:lsid:genepattern.org:module.analysis:00442:999999999
+params: 
+    "DNA.sequences.to.annotate": "inputs/03-input_zrs-enhancer.tsv"
+    "TF.affinity.information": "inputs/03-input_tf-information.tsv"
+    "batch.motif.input.file": "inputs/03-input_batch-pbx-pwms.txt"
+    "TF.affinity.files": ["inputs/03-input_ets1-pbm.tsv","inputs/03-input_hoxa13-pbm.tsv"]
+    "output.image.as.svg": "False"
+    "PWM.binding.site.color": "grey"
+    "plot.resolution": "200"
+    "zoom.range": "320-490"
+    "PWM.minimum.score": "0.8"
+    "output.filename": "<DNA.sequences.to.annotate_basename>"
 
-name: "tfsites.VisualizeTFSitesOnSequences - simple test"
-module: "tfsites.VisualizeTFSitesOnSequences"
-params:
-    DNA.sequence(s).to.annotate: "data/03-input_batch-enhancers-to-analyze.tsv"
-    TF.affinity.information: "data/03-input_tf-information.tsv"
-    TF.affinity.files: ["data/03-input_ets1-pbm.tsv","data/03-input_hoxa13-pbm.tsv"]
-    batch.motif.input.file  : "data/03-input_batch-pbx-pwms.txt"
-    PWM.minimum.score: "0.8"
-    zoom.range: 320-490
-    plot.resolution: 200
-assertions:
+assertions: 
     jobStatus: success
-
+    files: 
+        03-input_zrs-enhancer_image_seq=ZRS_zoom=320-490.png: !!null
+        03-input_zrs-enhancer_table_seq=ZRS_zoom=320-490_batch-custom-pwm.tsv: !!null
+        03-input_zrs-enhancer_table_seq=ZRS_zoom=320-490_tf-info-table.tsv: !!null
+        stdout.txt: !!null
