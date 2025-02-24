@@ -116,7 +116,7 @@ p7_value=
 
 p8_MODE=
 p8_TYPE=TEXT
-p8_default_value=1-200
+p8_default_value=
 p8_description=Given a start position and an end position, zoom into a portion of the sequence. The numbers in the range are inclusive and 1-indexed. For example, the first 200 nucleotides of the sequence would be specified as: 1-200.
 p8_fileFormat=
 p8_flag=
